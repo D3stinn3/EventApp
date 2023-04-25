@@ -6,4 +6,4 @@ def home_page(request):
     users = User.objects.filter(party=True)
     events = Event.objects.all()
     context = {'users': users, 'events': events}
-    return render(request, "home.html")
+    return render(request, "home.html", context)

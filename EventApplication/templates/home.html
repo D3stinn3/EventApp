@@ -2,24 +2,24 @@
 
 {% block content %}
 <h1>d3$tinn3</h1>
-<section>
-    <h2>KOD Events</h2>
-    <div id="events---lists">
-        {% for event in events %}
-        <div>
-            {{event.name}}
-        </div>
-        {% endfor %}
-    </div>
-</section>
-<section>
-    <h3>KOD Users</h3>
-    <div id="events---lists">
-        {% for user in users %}
-        <div>
-            {{user.name}}
-        </div>
-        {% endfor %}
-    </div>
-</section>
+    <section>
+        <h3>Events</h3>
+            <div id="events---lists section">
+                {% for event in events %}
+                <div>
+                    {{event.name}}
+                </div>
+                {% endfor %}
+            </div>
+    </section>
+    <section>
+        <h3>Users</h3>
+            <div id="events---lists section">
+                {% for user in users %}
+                <div>
+                    {{user.name}}
+                </div>
+                {% endfor %}
+            </div>
+    </section>
 {% endblock %}
