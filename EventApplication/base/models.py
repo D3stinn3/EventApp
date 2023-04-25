@@ -10,7 +10,7 @@ class User(AbstractUser):
     party = models.BooleanField(default=True, null=True)
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username']
     
 class Event(models.Model):
     name = models.CharField(max_length=250)
