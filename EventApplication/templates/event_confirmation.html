@@ -1,7 +1,8 @@
-{% extends 'mail.html' %}
+{% extends 'main.html' %}
 
 {% block content %}
 <form method="POST">
+    {% csrf_token %}
     <a href="{% url 'event' event.id %}">Rudi</a>
     <input type="submit" value="kubali"/>
 </form>
