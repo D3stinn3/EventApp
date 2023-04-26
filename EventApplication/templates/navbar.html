@@ -4,6 +4,9 @@
     <a href="{% url 'home' %}">Mtaa</a>
 
     {% if request.user.is_authenticated %}
-    <a href="{% url 'account' %}">Authenticate</a>
+    <div>
+        <h1>Successfully Authenticated</h1>
+        <a href="{% url 'account' %}">Authenticate</a> 
+    </div>
     {% endif %}
 </nav>
