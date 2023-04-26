@@ -22,3 +22,8 @@ def registration_confirmation(request, pk):
         event.participants.add(request.user)
         return redirect('event', pk=event.id)
     return render(request, 'event_confirmation.html', context)
+
+def user_page(request, pk):
+    user = User.objects.get(id=pk)
+    context = {'user' : user}
+    return render(request, 'profile.html', context)
