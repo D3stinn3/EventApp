@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import User, Event, Submission
 
 # Create your views here.
@@ -13,3 +13,12 @@ def event_page(request, pk):
     event = Event.objects.get(id=pk)
     context = {'event' : event}
     return render(request, 'event.html', context)
+
+def registration_confirmation(request, pk):
+    event= Event.objects.get(id=pk)
+    context = {'event' : event}
+    
+    if request.method == 'POST':
+        event.participants.add(request.user)
+        return redirect('event', pk=event.id)
+    return render(request, 'event_confirmation.html', context)

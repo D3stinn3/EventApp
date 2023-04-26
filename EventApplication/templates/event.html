@@ -4,8 +4,19 @@
 <h1>{{event.name}}</h1>
     <section>
         <h2>Description</h2>
-            <p>{{event.description}}</p>
-        <h3>Date Created</h3>
-            <p>{{event.date}}</p>
+            <a href="{% url 'confirm' event.id %}">Register</a>
+                <p>{{event.description}}</p>
+            <h2>Date Created</h2>
+                <p>{{event.date}}</p>
+            <div>
+                <h3>Participants</h3>
+                <div>
+                    {% for user in event.participants.all %}
+                    <div>
+                        <strong>{{user.name}}</strong>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
     </section>
 {% endblock content%}
