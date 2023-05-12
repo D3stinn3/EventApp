@@ -6,7 +6,10 @@
     {% if request.user.is_authenticated %}
     <div>
         <h1>Successfully Authenticated</h1>
-        <a href="{% url 'account' %}">Authenticate</a> 
+        <a href="{% url 'account' %}">Account</a>
+        <a href="#">Logout</a>
+        {% else %}
+        <a href="#">Login</a> 
     </div>
     {% endif %}
 </nav>

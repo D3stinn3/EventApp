@@ -25,7 +25,7 @@ def registration_confirmation(request, pk):
 
 def user_page(request, pk):
     user = User.objects.get(id=pk)
-    context = {'user' : user}
+    context = {'user': user}
     return render(request, 'profile.html', context)
 
 def account_page(request):
