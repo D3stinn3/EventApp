@@ -4,7 +4,11 @@
 <h1>{{event.name}}</h1>
     <section>
         <h2>Description</h2>
+        {% if registered %}
+            <p>You're registered to {{event.name}}</p>
+        {% else %}
             <a href="{% url 'confirm' event.id %}">Register</a>
+        {% endif %}
             <a href="{% url 'submission' event.id %}">Submit</a>
                 <p>{{event.description}}</p>
             <h2>Date Created</h2>
