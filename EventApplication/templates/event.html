@@ -9,7 +9,12 @@
         {% else %}
             <a href="{% url 'confirm' event.id %}">Register</a>
         {% endif %}
+
+        {% if submitted %}
+            <p> You've made a submission to {{event.name}}</p>
+        {% else %}
             <a href="{% url 'submission' event.id %}">Submit</a>
+        {% endif %}
                 <p>{{event.description}}</p>
             <h2>Date Created</h2>
                 <p>{{event.date}}</p>

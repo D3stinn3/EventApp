@@ -14,9 +14,10 @@ def event_page(request, pk):
     event = Event.objects.get(id=pk)
     
     registered = request.user.events.filter(id=event.id).exists()
-    
+    submitted = Submission.objects.filter(participant=request.user, event=event).exists()
     print('registered', registered)
-    context = {'event' : event, 'registered': registered}
+    print('submitted', submitted)
+    context = {'event' : event, 'registered': registered, 'submitted': submitted}
     return render(request, 'event.html', context)
 
 def registration_confirmation(request, pk):
