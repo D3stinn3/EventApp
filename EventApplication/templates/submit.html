@@ -1,5 +1,13 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    <h1>Submissions</h1>
+    <h1>Submissions for {{events.name}}</h1>
+
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            {{forms.as_p}}
+            <input type="submit">
+        </form>
+    </div>
 {% endblock %}

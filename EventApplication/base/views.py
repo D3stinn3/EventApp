@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import User, Event, Submission
+from .forms import SubmissionForm
 
 # Create your views here.
 def home_page(request):
@@ -35,6 +36,19 @@ def account_page(request):
 
 def submission_page(request, pk):
     events =  Event.objects.get(id=pk)
-    context = {'events' : events}
+    forms = SubmissionForm()
+    context = {'events' : events, 'forms': forms }
+    
+    if request.method == "POST":
+        forms = SubmissionForm(request.POST)
+        submission = forms.save(commit=False)
+        submission.participant = request.user
+        if forms.is_valid():
+            submission = forms.save(commit=False)
+            submission.participant = request.user
+            submission.event = events
+            submission.save()
+            return redirect('account')
+        
     return render(request, 'submit.html', context)
     
