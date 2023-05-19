@@ -13,6 +13,10 @@ def home_page(request):
 def event_page(request, pk):
     event = Event.objects.get(id=pk)
     context = {'event' : event}
+    
+    registered = request.user.events.filter(id=event.id).exists()
+    
+    print('registered:', registered)
     return render(request, 'event.html', context)
 
 def registration_confirmation(request, pk):
