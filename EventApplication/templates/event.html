@@ -5,6 +5,7 @@
     <section>
         <h2>Description</h2>
             <a href="{% url 'confirm' event.id %}">Register</a>
+            <a href="{% url 'submission' event.id %}">Submit</a>
                 <p>{{event.description}}</p>
             <h2>Date Created</h2>
                 <p>{{event.date}}</p>

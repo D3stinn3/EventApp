@@ -32,3 +32,9 @@ def account_page(request):
     user = request.user
     context = {'user' : user} 
     return render(request, 'account.html', context)
+
+def submission_page(request, pk):
+    events =  Event.objects.get(id=pk)
+    context = {'events' : events}
+    return render(request, 'submit.html', context)
+    
