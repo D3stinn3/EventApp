@@ -3,8 +3,16 @@
 {% block content %}
     <h1>My Account</h1>
     <div>
+        <h2>My Events</h2>
         {% for event in user.events.all %}
         <a href="{% url 'event' event.id %}">{{event.name}}</a>
+        {% endfor %}
+    </div>
+
+        <div>
+        <h2>My Submissions</h2>
+        {% for sub in user.submissions.all %}
+        <a href="#">{{sub.event.name}}</a>
         {% endfor %}
     </div>
 {% endblock content %}

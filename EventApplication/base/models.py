@@ -23,7 +23,7 @@ class Event(models.Model):
         return self.name
     
 class Submission(models.Model):
-    participant = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    participant = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="submissions")
     event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True)
     # models.CASCADE deletes the model tree ie parent, child
     # models.SET_NULL saves an instance of a submission
