@@ -61,6 +61,13 @@ def update_submission(request, pk):
     submission = Submission.objects.get(id=pk)
     events = submission.event
     forms = SubmissionForm(instance=submission)
+    
+    if request.method == 'POST':
+        forms = SubmissionForm(request.POST, instance=submission)
+        if forms.is_valid():
+            forms.save()
+            return redirect('account')
+        
     context= {'forms': forms, 'events': events}
     return render(request, 'submit.html', context)
      
