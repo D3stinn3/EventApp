@@ -1,4 +1,9 @@
 {% extends 'main.html' %}
-{% blockcontent %}
-    <h1>Login Page</h1>
+
+{% block content %}
+    {if page == 'register'}
+        <h1>Register</h1>
+    {% else %}
+        <h1>Login</h1>
+    {% endif %}
 {% endblock content%}

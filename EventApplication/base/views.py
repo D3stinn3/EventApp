@@ -77,5 +77,11 @@ def update_submission(request, pk):
     return render(request, 'submit.html', context)
 
 def login_page(request):
-    context = {}
+    page = 'login'
+    context = {'page': page}
+    return render(request, 'login.html', context)
+
+def register_page(request):
+    page = 'register'
+    context = {'page': page}
     return render(request, 'login.html', context)
