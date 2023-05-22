@@ -56,4 +56,11 @@ def submission_page(request, pk):
             return redirect('account')
         
     return render(request, 'submit.html', context)
-    
+
+def update_submission(request, pk):
+    submission = Submission.objects.get(id=pk)
+    events = submission.event
+    forms = SubmissionForm(instance=submission)
+    context= {'forms': forms, 'events': events}
+    return render(request, 'submit.html', context)
+     
