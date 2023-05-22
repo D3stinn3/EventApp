@@ -36,13 +36,13 @@ def user_page(request, pk):
     context = {'user': user}
     return render(request, 'profile.html', context)
 
-@login_required()
+@login_required(login_url='login')
 def account_page(request):
     user = request.user
     context = {'user' : user} 
     return render(request, 'account.html', context)
 
-@login_required()
+@login_required(login_url='login')
 def submission_page(request, pk):
     events =  Event.objects.get(id=pk)
     forms = SubmissionForm()
@@ -61,7 +61,7 @@ def submission_page(request, pk):
         
     return render(request, 'submit.html', context)
 
-@login_required()
+@login_required(login_url='login')
 def update_submission(request, pk):
     submission = Submission.objects.get(id=pk)
     events = submission.event
@@ -75,4 +75,7 @@ def update_submission(request, pk):
         
     context= {'forms': forms, 'events': events}
     return render(request, 'submit.html', context)
-     
+
+def login_page(request):
+    context = {}
+    return render(request, 'login.html', context)
