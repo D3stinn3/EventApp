@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import User, Event, Submission
-from .forms import SubmissionForm, UserForm
+from .forms import SubmissionForm, UserForm, RegisterForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 def home_page(request):
@@ -97,6 +98,13 @@ def logout_page(request):
     return redirect('login')
 
 def register_page(request):
+    forms = RegisterForm
     page = 'register'
-    context = {'page': page}
+    
+    if request.method == "POST":
+        forms = RegisterForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            return redirect('login')
+    context = {'page': page, 'forms': forms}
     return render(request, 'login.html', context)

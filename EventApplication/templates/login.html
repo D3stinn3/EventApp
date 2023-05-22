@@ -3,6 +3,13 @@
 {% block content %}
     {% if page == 'register' %}
         <h1>Register</h1>
+            <div>
+                <form method="POST" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    {{forms.as_p}}
+                    <input type="submit" value="Register"/>
+                </form>
+            </div>
     {% else %}
         <h1>Login</h1>
 
