@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import User, Event, Submission
-from .forms import SubmissionForm
+from .forms import SubmissionForm, UserForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
