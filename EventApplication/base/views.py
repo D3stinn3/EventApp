@@ -104,7 +104,9 @@ def register_page(request):
     if request.method == "POST":
         forms = RegisterForm(request.POST)
         if forms.is_valid():
-            forms.save()
-            return redirect('login')
+            user = forms.save(commit=False)
+            user.save()
+            login(request, user)
+            return redirect('home')
     context = {'page': page, 'forms': forms}
     return render(request, 'login.html', context)
