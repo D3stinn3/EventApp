@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import User, Event, Submission
 from .forms import SubmissionForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home_page(request):
@@ -20,6 +21,7 @@ def event_page(request, pk):
     context = {'event' : event, 'registered': registered, 'submitted': submitted}
     return render(request, 'event.html', context)
 
+@login_required()
 def registration_confirmation(request, pk):
     event= Event.objects.get(id=pk)
     context = {'event' : event}
@@ -34,11 +36,13 @@ def user_page(request, pk):
     context = {'user': user}
     return render(request, 'profile.html', context)
 
+@login_required()
 def account_page(request):
     user = request.user
     context = {'user' : user} 
     return render(request, 'account.html', context)
 
+@login_required()
 def submission_page(request, pk):
     events =  Event.objects.get(id=pk)
     forms = SubmissionForm()
@@ -57,6 +61,7 @@ def submission_page(request, pk):
         
     return render(request, 'submit.html', context)
 
+@login_required()
 def update_submission(request, pk):
     submission = Submission.objects.get(id=pk)
     events = submission.event
