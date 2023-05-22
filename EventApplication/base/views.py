@@ -4,6 +4,7 @@ from .forms import SubmissionForm, UserForm, RegisterForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponse
 
 # Create your views here.
 def home_page(request):
@@ -68,6 +69,11 @@ def update_submission(request, pk):
     submission = Submission.objects.get(id=pk)
     events = submission.event
     forms = SubmissionForm(instance=submission)
+    
+    if request.user != submission.participant:
+        return HttpResponse("Nice Try")
+    elif request.user is None:
+        return redirect('account')
     
     if request.method == 'POST':
         forms = SubmissionForm(request.POST, instance=submission)
