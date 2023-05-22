@@ -12,7 +12,7 @@
         <div>
         <h2>My Submissions</h2>
         {% for sub in user.submissions.all %}
-        <a href="{% url 'submissionupdate' submission.id %}">{{sub.event.name}}</a>
+        <a href="{% url 'submissionupdate' sub.id %}">{{sub.event.name}}</a>
         {% endfor %}
     </div>
 {% endblock content %}
