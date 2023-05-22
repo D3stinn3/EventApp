@@ -10,5 +10,6 @@ urlpatterns = [
     path('submission/<str:pk>/', views.submission_page, name="submission"),
     path('submissionupdate/<str:pk>/', views.update_submission, name="submissionupdate"),
     path('login/', views.login_page, name="login"),
+    path('logout/', views.logout_page, name="logout"),
     path('register/', views.register_page, name="register")
 ]

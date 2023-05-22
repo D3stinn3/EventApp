@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import User, Event, Submission
 from .forms import SubmissionForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def home_page(request):
@@ -78,8 +79,22 @@ def update_submission(request, pk):
 
 def login_page(request):
     page = 'login'
+    
+    if request.method == 'POST':
+        user = authenticate(
+            email=request.POST['email'],
+            password=request.POST['password']
+            )
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        
     context = {'page': page}
     return render(request, 'login.html', context)
+
+def logout_page(request):
+    logout(request)
+    return redirect('login')
 
 def register_page(request):
     page = 'register'

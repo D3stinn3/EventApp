@@ -7,9 +7,9 @@
     <div>
         <h1>Successfully Authenticated</h1>
         <a href="{% url 'account' %}">Account</a>
-        <a href="#">Logout</a>
+        <a href="{% url 'logout' %}">Logout</a>
         {% else %}
-        <a href="#">Login</a> 
+        <a href="{% url 'login' %}">Login</a> 
     </div>
     {% endif %}
 </nav>
