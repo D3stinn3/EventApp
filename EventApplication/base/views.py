@@ -17,8 +17,13 @@ def home_page(request):
 def event_page(request, pk):
     event = Event.objects.get(id=pk)
     
-    registered = request.user.events.filter(id=event.id).exists()
-    submitted = Submission.objects.filter(participant=request.user, event=event).exists()
+    registered = False
+    submitted = False
+    
+    if request.user.is_authenticated:
+        registered = request.user.events.filter(id=event.id).exists()
+        submitted = Submission.objects.filter(participant=request.user, event=event).exists()
+    
     print('registered', registered)
     print('submitted', submitted)
     context = {'event' : event, 'registered': registered, 'submitted': submitted}
